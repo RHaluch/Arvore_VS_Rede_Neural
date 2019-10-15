@@ -23,27 +23,27 @@ X_treino = X[:int(divisao*n_samples)]
 Y_treino = Y[:int(divisao*n_samples)]
 
 #classificador ARVORE DE DECISAO --------------------------------
-'''clf = tree.DecisionTreeClassifier()
+clf = tree.DecisionTreeClassifier(criterion="entropy")
 clf.fit(X_treino,Y_treino)
 
 predicao = clf.predict(X_teste)
 
-print(clf.score(X_teste,Y_teste))
+print("Arvore de Decisão: ", clf.score(X_teste,Y_teste))
 
 matriz=metrics.confusion_matrix(Y_teste, predicao)
 
 for item in matriz:
 
-    print(item)'''
+    print(item)
 
-#classificador REDEN NEURAL MLP ---------------------------------
-clf = neural_network.MLPClassifier(activation='logistic')
+#classificador REDE NEURAL MLP ---------------------------------
+clf = neural_network.MLPClassifier(activation="logistic", max_iter=250, alpha=0.2)
 
 clf.fit(X_treino,Y_treino)
 
 predicao = clf.predict(X_teste)
 
-print(clf.score(X_teste,Y_teste)*100," %")
+print("\n\nRede Neural MLP: ", clf.score(X_teste,Y_teste))
 
 matriz = metrics.confusion_matrix(Y_teste,predicao)
 
